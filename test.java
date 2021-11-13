@@ -3,11 +3,17 @@ import concurrentcube.Cube;
 public class test {
     public static void main(String[] args) {
         var counter = new Object() { int value = 0; };
-        Cube cube = new Cube(4,
+        Cube cube = new Cube(2,
                 (x,y) -> { ++counter.value; }, 
                 (x,y) -> { ++counter.value; },
                 () -> { ++counter.value; },
                 () -> { ++counter.value; });
+
+        cube.rotateLeftTest();
+
+        System.out.println(cube.showTest());
+
+        System.out.println("----------------");
 
         cube.rotateTopTest();
 
