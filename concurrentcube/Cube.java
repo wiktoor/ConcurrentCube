@@ -3,13 +3,22 @@ package concurrentcube;
 import java.util.function.BiConsumer;
 
 public class Cube {
-    int size;
-    BiConsumer<Integer, Integer> beforeRotation;
-    BiConsumer<Integer, Integer> afterRotation;
-    Runnable beforeShowing;
-    Runnable afterShowing;
+    private int size;
+    private BiConsumer<Integer, Integer> beforeRotation;
+    private BiConsumer<Integer, Integer> afterRotation;
+    private Runnable beforeShowing;
+    private Runnable afterShowing;
 
-    Side[] sides;
+    private Side[] sides;
+    private String display;
+
+    // getters
+    public Side[] sides() { return sides; }
+
+    // setters
+    public void setDisplay(String display) {
+        this.display = display;
+    }
 
     public Cube(int size,
                 BiConsumer<Integer, Integer> beforeRotation, 
@@ -30,8 +39,21 @@ public class Cube {
         String res = "";
         for(int i = 0; i < 6; i++) {
             res += sides[i].showSide();
-            if (i != 6) res += "\n";
+            if (i != 5) res += "\n";
         }
         return res;
+    }
+
+    public String showTest() {
+        Showing show = new Showing(this);
+        Thread t = new Thread(show);
+        t.run();
+        try {
+            t.join();
+        }
+        catch (InterruptedException e) {
+
+        }
+        return display;
     }
 }

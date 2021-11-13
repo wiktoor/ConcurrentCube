@@ -9,5 +9,7 @@ public class test {
                 () -> { ++counter.value; },
                 () -> { ++counter.value; });
         System.out.println(cube.sequentialShow());
+
+        System.out.println(cube.showTest());
     }
 }
