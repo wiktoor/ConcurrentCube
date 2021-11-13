@@ -18,13 +18,43 @@ public class Side {
 
     public String showSide() {
         String res = "";
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                res += String.valueOf(values[i][j]);
-                if (j != size - 1) res += " ";
+        for (int r = 0; r < size; r++) {
+            for (int c = 0; c < size; c++) {
+                res += String.valueOf(values[r][c]);
+                if (c != size - 1) res += " ";
             }
-            if (i != size - 1) res += "\n";
+            if (r != size - 1) res += "\n";
         }
         return res;
+    }
+
+    private void reverseRows() {
+        for (int r = 0; r < size; r++) {
+            for (int c = 0; c < size / 2; c++) {
+                int tmp = values[r][c];
+                values[r][c] = values[r][size - c - 1];
+                values[r][size - c - 1] = tmp;
+            }
+        }
+    }
+
+    private void transpose() {
+        for (int r = 1; r < size; r++) {
+            for (int c = 0; c < r; c++) {
+                int tmp = values[r][c];
+                values[r][c] = values[c][r];
+                values[c][r] = tmp;
+            }
+        }
+    }
+
+    public void rotateClockwise() {
+        transpose();
+        reverseRows();
+    }
+
+    public void rotateCounterclockwise() {
+        reverseRows();
+        transpose();
     }
 }
