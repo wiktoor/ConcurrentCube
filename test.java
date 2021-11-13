@@ -8,7 +8,8 @@ public class test {
                 (x,y) -> { ++counter.value; },
                 () -> { ++counter.value; },
                 () -> { ++counter.value; });
-        System.out.println(cube.sequentialShow());
+
+        cube.rotateTopTest();
 
         System.out.println(cube.showTest());
     }

@@ -14,7 +14,7 @@ public class Showing extends Operation {
         String res = "";
         for (int i = 0; i < 6; i++) {
             res += cube.sides()[i].showSide();
-            if (i != 5) res += "\n";
+            if (i != 5) res += "\n\n";
         }
         cube.setDisplay(res);
     }

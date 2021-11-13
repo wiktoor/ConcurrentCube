@@ -16,6 +16,16 @@ public class Side {
         }
     }
 
+    // getters
+    public int value(int row, int column) {
+        return values[row][column];
+    }
+
+    // setters
+    public void setValue(int value, int row, int column) {
+        values[row][column] = value;
+    }
+
     public String showSide() {
         String res = "";
         for (int r = 0; r < size; r++) {

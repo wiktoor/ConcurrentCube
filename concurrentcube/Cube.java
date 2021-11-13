@@ -14,6 +14,7 @@ public class Cube {
 
     // getters
     public Side[] sides() { return sides; }
+    public int size() { return size; }
 
     // setters
     public void setDisplay(String display) {
@@ -35,6 +36,8 @@ public class Cube {
         for (int i = 0; i < 6; i++) sides[i] = new Side(i, size);
     }
 
+    // funkcje do testowania
+
     public String sequentialShow() {
         String res = "";
         for(int i = 0; i < 6; i++) {
@@ -55,5 +58,12 @@ public class Cube {
 
         }
         return display;
+    }
+
+    public void rotateTopTest() {
+        Thread t = new Thread(new RotateTop(0, this));
+        t.run();
+        try { t.join(); }
+        catch (InterruptedException e) { }
     }
 }
