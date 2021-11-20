@@ -7,21 +7,6 @@ public class RotateTop extends Operation {
 
     @Override
     public void run() {
-        for (int i = 0; i < cube.size(); i++) {
-            int tmp = cube.sides()[2].value(layer, i);
-            cube.sides()[2].setValue(
-                cube.sides()[3].value(layer, i), layer, i);
-            cube.sides()[3].setValue(
-                cube.sides()[4].value(layer, i), layer, i);
-            cube.sides()[4].setValue(
-                cube.sides()[1].value(layer, i), layer, i);
-            cube.sides()[1].setValue(tmp, layer, i);
-        }
-        if (layer == 0) {
-            cube.sides()[0].rotateClockwise();
-        }
-        if (layer == cube.size() - 1) {
-            cube.sides()[5].rotateCounterclockwise();
-        }
+       rotateTop(); 
     }
 }

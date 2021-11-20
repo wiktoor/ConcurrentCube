@@ -15,4 +15,88 @@ public abstract class Operation implements Runnable {
         this.layer = layer;
         this.cube = cube;
     }
+
+    protected void rotateFront() {
+        for (int i = 0; i < cube.size(); i++) {
+            int tmp = cube.sides()[0].value(cube.size() - layer - 1, i);
+            cube.sides()[0].setValue(
+                cube.sides()[1].value(cube.size() - i - 1, cube.size() - layer - 1), 
+                cube.size() - layer - 1, 
+                i);
+            cube.sides()[1].setValue(
+                cube.sides()[5].value(layer, cube.size() - i - 1), 
+                cube.size() - i - 1, 
+                cube.size() - layer - 1);
+            cube.sides()[5].setValue(
+                cube.sides()[3].value(i, layer), 
+                layer, 
+                cube.size() - i - 1);
+            cube.sides()[3].setValue(
+                tmp, 
+                i, 
+                layer);
+        }
+        if (layer == 0) {
+            cube.sides()[2].rotateClockwise();
+        }
+        if (layer == cube.size() - 1) {
+            cube.sides()[4].rotateCounterclockwise();
+        }
+    }
+
+    protected void rotateLeft() {
+        for (int i = 0; i < cube.size(); i++) {
+            int tmp = cube.sides()[0].value(i, layer);
+            cube.sides()[0].setValue(
+                cube.sides()[4].value(cube.size() - i - 1, cube.size() - layer - 1), 
+                i, 
+                layer);
+            cube.sides()[4].setValue(
+                cube.sides()[5].value(i, layer), 
+                cube.size() - i - 1, 
+                cube.size() - layer - 1);
+            cube.sides()[5].setValue(
+                cube.sides()[2].value(i, layer), 
+                i, 
+                layer);
+            cube.sides()[2].setValue(
+                tmp, 
+                i, 
+                layer);
+        }
+        if (layer == 0) {
+            cube.sides()[1].rotateClockwise();
+        }
+        if (layer == cube.size() - 1) {
+            cube.sides()[3].rotateCounterclockwise();
+        }
+    }
+
+    public void rotateTop() {
+        for (int i = 0; i < cube.size(); i++) {
+            int tmp = cube.sides()[2].value(layer, i);
+            cube.sides()[2].setValue(
+                cube.sides()[3].value(layer, i), 
+                layer, 
+                i);
+            cube.sides()[3].setValue(
+                cube.sides()[4].value(layer, i), 
+                layer, 
+                i);
+            cube.sides()[4].setValue(
+                cube.sides()[1].value(layer, i), 
+                layer, 
+                i);
+            cube.sides()[1].setValue(
+                tmp, 
+                layer, 
+                i);
+        }
+        if (layer == 0) {
+            cube.sides()[0].rotateClockwise();
+        }
+        if (layer == cube.size() - 1) {
+            cube.sides()[5].rotateCounterclockwise();
+        }
+    }
 }
