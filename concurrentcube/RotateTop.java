@@ -7,6 +7,12 @@ public class RotateTop extends Operation {
 
     @Override
     public void run() {
-       rotateTop(); 
+        rotateTop(); 
+        if (layer == 0) {
+            cube.sides()[0].rotateClockwise();
+        }
+        if (layer == cube.size() - 1) {
+            cube.sides()[5].rotateCounterclockwise();
+        }
     }
 }

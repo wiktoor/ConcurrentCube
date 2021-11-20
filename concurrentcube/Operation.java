@@ -36,12 +36,6 @@ public abstract class Operation implements Runnable {
                 i, 
                 layer);
         }
-        if (layer == 0) {
-            cube.sides()[2].rotateClockwise();
-        }
-        if (layer == cube.size() - 1) {
-            cube.sides()[4].rotateCounterclockwise();
-        }
     }
 
     protected void rotateLeft() {
@@ -64,12 +58,6 @@ public abstract class Operation implements Runnable {
                 i, 
                 layer);
         }
-        if (layer == 0) {
-            cube.sides()[1].rotateClockwise();
-        }
-        if (layer == cube.size() - 1) {
-            cube.sides()[3].rotateCounterclockwise();
-        }
     }
 
     public void rotateTop() {
@@ -91,12 +79,6 @@ public abstract class Operation implements Runnable {
                 tmp, 
                 layer, 
                 i);
-        }
-        if (layer == 0) {
-            cube.sides()[0].rotateClockwise();
-        }
-        if (layer == cube.size() - 1) {
-            cube.sides()[5].rotateCounterclockwise();
         }
     }
 }

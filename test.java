@@ -18,5 +18,11 @@ public class test {
         cube.rotateTopTest();
 
         System.out.println(cube.showTest());
+
+        System.out.println("----------------");
+
+        cube.rotateBottomTest();
+
+        System.out.println(cube.showTest());
     }
 }

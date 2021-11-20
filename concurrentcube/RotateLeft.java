@@ -8,5 +8,11 @@ public class RotateLeft extends Operation {
     @Override
     public void run() {
         rotateLeft();
+        if (layer == 0) {
+            cube.sides()[1].rotateClockwise();
+        }
+        if (layer == cube.size() - 1) {
+            cube.sides()[3].rotateCounterclockwise();
+        }
     }
 }

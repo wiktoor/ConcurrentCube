@@ -80,4 +80,11 @@ public class Cube {
         try { t.join(); }
         catch (InterruptedException e) { }
     }
+
+    public void rotateBottomTest() {
+        Thread t = new Thread(new RotateBottom(0, this));
+        t.run();
+        try { t.join(); }
+        catch (InterruptedException e) { }
+    }
 }
