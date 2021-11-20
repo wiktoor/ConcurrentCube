@@ -36,6 +36,21 @@ public class Cube {
         for (int i = 0; i < 6; i++) sides[i] = new Side(i, size);
     }
 
+    public static int oppositeSide(int side) {
+        switch (side) {
+            case 0: return 5;
+            case 1: return 3;
+            case 2: return 4;
+            case 3: return 1;
+            case 4: return 2;
+            case 5: return 0;
+            default: {
+                assert(false);
+                return 0;
+            }
+        }
+    }
+
     // funkcje do testowania
 
     public String sequentialShow() {

@@ -1,10 +1,10 @@
 package concurrentcube;
 
 public abstract class Operation implements Runnable {
-    protected boolean isRotation;
-    protected int side;
-    protected int layer;
-    protected Cube cube;
+    protected final boolean isRotation;
+    protected final int side;
+    protected final int layer;
+    protected final Cube cube;
 
     public Operation(boolean isRotation, 
                     int side,
@@ -14,6 +14,26 @@ public abstract class Operation implements Runnable {
         this.side = side;
         this.layer = layer;
         this.cube = cube;
+    }
+
+    // getters
+    public boolean isRotation() {
+        return isRotation;
+    }
+
+    public int side() {
+        return side;
+    }
+
+    public int layer() {
+        return layer;
+    }
+
+    public boolean canWorkConcurrently(Operation op) {
+        if (!isRotation || !op.isRotation()) return false;
+        if (side == op.side() && layer != op.layer()) return true;
+        if (side == Cube.oppositeSide(op.side()) && layer != cube.size() - op.layer() - 1) return true;
+        return false;
     }
 
     protected void rotateFront() {
