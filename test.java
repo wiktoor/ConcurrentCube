@@ -9,7 +9,7 @@ public class test {
                 () -> { ++counter.value; },
                 () -> { ++counter.value; });
 
-        cube.rotateLeftTest();
+        cube.rotateFrontTest();
 
         System.out.println(cube.showTest());
 

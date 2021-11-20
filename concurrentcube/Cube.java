@@ -73,4 +73,11 @@ public class Cube {
         try { t.join(); }
         catch (InterruptedException e) { }
     }
+
+    public void rotateFrontTest() {
+        Thread t = new Thread(new RotateFront(0, this));
+        t.run();
+        try { t.join(); }
+        catch (InterruptedException e) { }
+    }
 }
