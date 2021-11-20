@@ -24,5 +24,7 @@ public class test {
         cube.rotateBottomTest();
 
         System.out.println(cube.showTest());
+
+        System.out.println((cube.testCanWork() ? "OK" : "Błąd"));
     }
 }

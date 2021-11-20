@@ -31,8 +31,7 @@ public abstract class Operation implements Runnable {
 
     public boolean canWorkConcurrently(Operation op) {
         if (!isRotation || !op.isRotation()) return false;
-        if (side == op.side() && layer != op.layer()) return true;
-        if (side == Cube.oppositeSide(op.side()) && layer != cube.size() - op.layer() - 1) return true;
+        if (layer != op.layer() && (side == op.side() || side == Cube.oppositeSide(op.side()))) return true;
         return false;
     }
 

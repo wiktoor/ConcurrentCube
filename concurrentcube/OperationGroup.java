@@ -11,13 +11,26 @@ public class OperationGroup {
         this.list = new ArrayList<Operation>();
     }
 
-    public synchronized boolean tryJoin(Operation op) {
+    public OperationGroup(Cube cube, Operation op) {
+        this.cube = cube;
+        this.list = new ArrayList<Operation>();
+        list.add(op);
+    }
+
+    public boolean canJoin(Operation op) {
         for (Operation operation : list) {
             if (!operation.canWorkConcurrently(op)) {
                 return false;
             }
         }
-        list.add(op);
         return true;
+    }
+
+    public synchronized boolean tryJoin(Operation op) {
+        if (canJoin(op)) {
+            list.add(op);
+            return true;
+        }
+        else return false;
     }
 }

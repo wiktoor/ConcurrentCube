@@ -102,4 +102,18 @@ public class Cube {
         try { t.join(); }
         catch (InterruptedException e) { }
     }
+
+    public boolean testCanWork() {
+        RotateFront front = new RotateFront(0, this);
+        System.out.println("Side");
+        System.out.println(front.side());
+        System.out.println("Layer");
+        System.out.println(front.layer());
+        RotateBack back = new RotateBack(0, this);
+        System.out.println("Side");
+        System.out.println(back.side());
+        System.out.println("Layer");
+        System.out.println(back.layer());
+        return front.canWorkConcurrently(back);
+    }
 }
