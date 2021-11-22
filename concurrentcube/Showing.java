@@ -3,10 +3,18 @@ package concurrentcube;
 public class Showing extends Operation {
 
     public Showing(Cube cube) {
+        super(false,
+              0,
+              0,
+              cube);
+    }
+
+    public Showing(Cube cube, OperationGroup group) {
         super(false, 
               0, // doesn't matter
               0, // doesn't matter
-              cube);
+              cube,
+              group);
     }
 
     @Override

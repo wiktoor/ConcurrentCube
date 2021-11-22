@@ -5,6 +5,10 @@ public class RotateBack extends Operation {
         super(true, 4, cube.size() - layer - 1, cube);
     }
 
+    public RotateBack(int layer, Cube cube, OperationGroup group) {
+        super(true, 4, cube.size() - layer - 1, cube, group);
+    }
+
     @Override
     public void run() {
         rotateFront();

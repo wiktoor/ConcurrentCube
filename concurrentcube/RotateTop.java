@@ -5,6 +5,10 @@ public class RotateTop extends Operation {
         super(true, 0, layer, cube);
     }
 
+    public RotateTop(int layer, Cube cube, OperationGroup group) {
+        super(true, 0, layer, cube, group);
+    }
+
     @Override
     public void run() {
         rotateTop(); 

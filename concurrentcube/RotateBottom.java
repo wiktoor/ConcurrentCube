@@ -5,6 +5,10 @@ public class RotateBottom extends Operation {
         super(true, 5, cube.size() - layer - 1, cube);
     }
 
+    public RotateBottom(int layer, Cube cube, OperationGroup group) {
+        super(true, 5, cube.size() - layer - 1, cube, group);
+    }
+
     @Override
     public void run() {
         rotateTop();

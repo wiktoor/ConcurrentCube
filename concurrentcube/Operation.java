@@ -5,15 +5,29 @@ public abstract class Operation implements Runnable {
     protected final int side;
     protected final int layer;
     protected final Cube cube;
+    protected OperationGroup group;
 
-    public Operation(boolean isRotation, 
-                    int side,
-                    int layer,
-                    Cube cube) {
+    public Operation(boolean isRotation,
+                     int side,
+                     int layer,
+                     Cube cube) {
         this.isRotation = isRotation;
         this.side = side;
         this.layer = layer;
         this.cube = cube;
+        this.group = null;
+    }
+
+    public Operation(boolean isRotation, 
+                    int side,
+                    int layer,
+                    Cube cube,
+                    OperationGroup group) {
+        this.isRotation = isRotation;
+        this.side = side;
+        this.layer = layer;
+        this.cube = cube;
+        this.group = group;
     }
 
     // getters
