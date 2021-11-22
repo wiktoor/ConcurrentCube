@@ -26,7 +26,7 @@ public class OperationGroup {
 
     public synchronized void noteEnd() {
         if (--numOfWorking == 0) {
-            // budzimy następną grupę
+            // TODO: budzimy następną grupę
         }
     }
 

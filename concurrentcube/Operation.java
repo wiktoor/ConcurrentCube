@@ -43,6 +43,56 @@ public abstract class Operation implements Runnable {
         return layer;
     }
 
+    public void beforeRotation() {
+        // we assume that we got mutex
+        group.noteStart();
+        int actualLayer = 0;
+        if (side == 0 || side == 1 || side == 2) {
+            actualLayer = layer;
+        }
+        else actualLayer = cube.size() - layer - 1;
+
+        cube.beforeRotation().accept(actualLayer, side);
+
+        Thread t = new Thread(this);
+        t.start();
+
+        cube.mutex().release();
+    }
+
+    public void afterRotation() {
+        cube.mutex().acquireUninterruptibly();
+        int actualLayer = 0;
+        if (side == 0 || side == 1 || side == 2) {
+            actualLayer = layer;
+        }
+        else actualLayer = cube.size() - layer - 1;
+
+        cube.afterRotation().accept(actualLayer, side);
+
+        group.noteEnd();
+        cube.mutex().release();
+    }
+
+    public void beforeShowing() {
+        // we assume that we got mutex
+        group.noteStart();
+        Thread t = new Thread(cube.beforeShowing());
+        t.start();
+        try { t.join(); }
+        catch (InterruptedException e) { /* TODO: co tu powinno być? */ }
+        cube.mutex().release();
+    } 
+
+    public void afterShowing() {
+        cube.mutex().acquireUninterruptibly();
+        Thread t = new Thread(cube.afterShowing());
+        t.start();
+        try { t.join(); }
+        catch (InterruptedException e) { /* TODO: co tu powinno być? */ }
+        cube.mutex().release();
+    }
+
     public boolean canWorkConcurrently(Operation op) {
         if (!isRotation || !op.isRotation()) return false;
         if (layer != op.layer() && (side == op.side() || side == Cube.oppositeSide(op.side()))) return true;

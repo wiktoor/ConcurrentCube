@@ -11,6 +11,8 @@ public class RotateBack extends Operation {
 
     @Override
     public void run() {
+        beforeRotation();
+
         rotateFront();
         rotateFront();
         rotateFront();
@@ -21,5 +23,7 @@ public class RotateBack extends Operation {
         if (layer == cube.size() - 1) {
             cube.sides()[4].rotateClockwise();
         }
+
+        afterRotation();
     }
 }

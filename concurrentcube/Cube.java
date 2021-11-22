@@ -1,5 +1,6 @@
 package concurrentcube;
 
+import java.util.concurrent.Semaphore;
 import java.util.function.BiConsumer;
 
 public class Cube {
@@ -11,10 +12,16 @@ public class Cube {
 
     private Side[] sides;
     private String display;
+    private Semaphore mutex = new Semaphore(1, true);
 
     // getters
     public Side[] sides() { return sides; }
     public int size() { return size; }
+    public BiConsumer<Integer, Integer> beforeRotation() { return beforeRotation; }
+    public BiConsumer<Integer, Integer> afterRotation() { return afterRotation; }
+    public Runnable beforeShowing() { return beforeShowing; }
+    public Runnable afterShowing() { return afterShowing; }
+    public Semaphore mutex() { return mutex; }
 
     // setters
     public void setDisplay(String display) {
