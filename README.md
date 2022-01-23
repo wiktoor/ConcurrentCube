@@ -1,0 +1,1 @@
+Program for my *Concurrent Programming* class. An implementation of an n x n x n Rubik's Cube which works concurrently, that means if two non-excluding operation can be done simultaneously, they are done at the same time. An example of such two operations is rotating first and second layer from the top.
