@@ -1,33 +1,27 @@
 package concurrentcube;
 
 public class Showing extends Operation {
-
     public Showing(Cube cube) {
-        super(false,
-              0,
-              0,
-              cube);
+        super(
+            false, 
+            0, // doesn't matter
+            0, // doesn't matter
+            cube);
     }
 
-    public Showing(Cube cube, OperationGroup group) {
-        super(false, 
-              0, // doesn't matter
-              0, // doesn't matter
-              cube,
-              group);
-    }
-
-    @Override
+    /**
+     * Checks if the display of the cube is set, and if not, then sets it
+     * @Warning it should only be used when the display 
+     * cannot be modified at the same time.
+     * Therefore, only use it within the 'synchronized(this)' section
+     */
     public void run() {
-        beforeShowing();
-
-        String res = "";
-        for (int i = 0; i < 6; i++) {
-            res += cube.sides()[i].showSide();
-            if (i != 5) res += "\n\n";
+        if (!cube.isDisplaySet()) {
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < 6; i++) {
+                res.append(cube.sides()[i].showSide());
+            }
+            cube.setDisplay(res.toString());
         }
-        cube.setDisplay(res);
-
-        afterShowing();
     }
 }

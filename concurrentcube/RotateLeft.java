@@ -5,22 +5,26 @@ public class RotateLeft extends Operation {
         super(true, 1, layer, cube);
     }
 
-    public RotateLeft(int layer, Cube cube, OperationGroup group) {
-        super(true, 1, layer, cube, group);
-    }
-
-    @Override
     public void run() {
-        beforeRotation();
-
-        rotateLeft();
-        if (layer == 0) {
-            cube.sides()[1].rotateClockwise();
+        for (int i = 0; i < cube.size(); i++) {
+            int tmp = cube.sides()[0].value(i, layer);
+            cube.sides()[0].setValue(
+                cube.sides()[4].value(cube.size() - i - 1, cube.size() - layer - 1), 
+                i, 
+                layer);
+            cube.sides()[4].setValue(
+                cube.sides()[5].value(i, layer), 
+                cube.size() - i - 1, 
+                cube.size() - layer - 1);
+            cube.sides()[5].setValue(
+                cube.sides()[2].value(i, layer), 
+                i, 
+                layer);
+            cube.sides()[2].setValue(
+                tmp, 
+                i, 
+                layer);
         }
-        if (layer == cube.size() - 1) {
-            cube.sides()[3].rotateCounterclockwise();
-        }
-
-        afterRotation();
+        checkAndRotate();
     }
 }
